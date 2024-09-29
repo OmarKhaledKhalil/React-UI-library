@@ -1,0 +1,62 @@
+
+stages:
+  - install
+  - test
+  - build
+  - deploy
+
+variables:
+  NODE_ENV: "production"
+  NODE_VERSION: "18.6.0"
+
+cache:
+  paths:
+    - node_modules/
+
+before_script:
+  - yum -y update
+  - curl -sL https://rpm.nodesource.com/setup_18.x | bash -
+  - yum install -y nodejs
+  - node -v # Verify Node.js version
+
+install_dependencies:
+  stage: install
+  script:
+    - npm ci # Clean install dependencies
+  artifacts:
+    paths:
+      - node_modules/
+
+run_tests:
+  stage: test
+  script:
+    - npm run test # Assumes you have tests set up in your project
+  allow_failure: false
+  artifacts:
+    paths:
+      - test-results/
+
+un_cypress_tests:
+  stage: test
+  script:
+    - npx cypress run  # Use npx to run Cypress tests
+  artifacts:
+    paths:
+      - cypress/results  # Change this path to where you save Cypress test results (if any)
+
+build_library:
+  stage: build
+  script:
+    - npm run build # Build the React UI library
+  artifacts:
+    paths:
+      - dist/
+
+deploy_library:
+  stage: deploy
+  script:
+    - npm publish --registry http://my-private-registry.local
+  only:
+    - main
+  dependencies:
+    - build_library

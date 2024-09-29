@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/OmarKhaledKhalil/React-UI-library/static/css/main.2cbad4ea.css",
+    "main.js": "/OmarKhaledKhalil/React-UI-library/static/js/main.b6061ab9.js",
+    "index.html": "/OmarKhaledKhalil/React-UI-library/index.html",
+    "main.2cbad4ea.css.map": "/OmarKhaledKhalil/React-UI-library/static/css/main.2cbad4ea.css.map",
+    "main.b6061ab9.js.map": "/OmarKhaledKhalil/React-UI-library/static/js/main.b6061ab9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2cbad4ea.css",
+    "static/js/main.b6061ab9.js"
+  ]
+}
